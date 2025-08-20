@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 #define MAX 10
 int main(){
     float num1,num2;
@@ -7,10 +8,11 @@ int main(){
     int option; 
     char history[MAX][50] ;
     int count = 0 ;
+    char entry[50];
     
     
     while(1){
-        printf("choose option 0:exit\n,1:calculator\n,2:history\n");
+        printf("choose option\n0:exit\n1:calculator\n2:history\n");
     scanf("%d",&option);
     
     if (option==0)
@@ -22,40 +24,59 @@ int main(){
     if(option == 1)
     { printf("write first number: ");
     scanf("%f",&num1);
-    printf("second number : ");
+    printf("second number: ");
     scanf("%f",&num2);
-    printf("write operation number 1 for add, 2 for sub, 3 for div, , 4 for mul");
+    printf("write operation number\n1 for addition\n2 for subtraction\n3 for division1\n4 for multipication\n");
     scanf("%d",&operations);
     switch(operations)
     {
         case 1:
-        printf("addition : %f ",num1+num2);
+        printf("addition of number 1 and number 2 is\n: %f ",num1+num2);
+        sprintf(entry,"%.2f+%.2f = %.2f",num1,num2,num1+num2 );
+        strcpy(history[count%MAX],entry);
+        count++;
+
         break; 
         case 2:
-        printf("subtraction : %f",num1-num2);
+        printf("subtraction of number 1 and number 2 is\n: %f",num1-num2);
+        sprintf(entry,"%.2f-%.2f = %.2f",num1,num2,num1-num2 );
+        strcpy(history[count%MAX],entry);
+        count++;
         break;
+        
         case 3:
-        printf("division : %f",num1/num2);
-        break;
-        case 4:
-        printf("multiplication : %f",num1*num2);
+             if (num2 == 0) {
+                printf("Error: Division by zero!\n");
+                sprintf(entry, "%.2f / %.2f = Error", num1, num2);
+                } else{
+                    printf("Division: %f\n", num1 / num2);
+                    sprintf(entry, "%.2f / %.2f = %.2f", num1, num2, num1 / num2);
+                    }
+                strcpy(history[count % MAX], entry);
+                count++;
+                break;
+
+        printf("multiplication of number 1 and number 2 is\n: %f",num1*num2);
+        sprintf(entry,"%.2f*%.2f = %.2f",num1,num2,num1*num2 );
+        strcpy(history[count%MAX],entry);
+        count++;
         break;
         default:
-        printf("no operations defined by the user");
+        printf("no operations defined by the user\n");
 
     }
     }
     if(option ==2)
     { if (count == 0 )
     {
-        printf("No history");
+        printf("No history\n");
     }
     else{
          int start;
                 if (count > MAX) {
-                    start = count - MAX;   
+                    start = count - MAX;   // show only last MAX
                 } else {
-                    start = 0;             
+                    start = 0;             // show all
                 }
                 printf("\n--- Calculation History ---\n");
                 for (int i = start; i < count; i++) {
