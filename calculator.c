@@ -10,7 +10,7 @@ int main(){
     
     
     while(1){
-        printf("choose option 0:exit\n,1:calculator\n,3:history\n");
+        printf("choose option 0:exit\n,1:calculator\n,2:history\n");
     scanf("%d",&option);
     
     if (option==0)
@@ -45,7 +45,7 @@ int main(){
 
     }
     }
-    if(option ==3)
+    if(option ==2)
     { if (count == 0 )
     {
         printf("No history");
@@ -53,9 +53,9 @@ int main(){
     else{
          int start;
                 if (count > MAX) {
-                    start = count - MAX;   // show only last MAX
+                    start = count - MAX;   
                 } else {
-                    start = 0;             // show all
+                    start = 0;             
                 }
                 printf("\n--- Calculation History ---\n");
                 for (int i = start; i < count; i++) {
@@ -70,7 +70,7 @@ int main(){
 
 
     }
-    if (option>4)
+    if (option>2)
     {
         printf("no options like that available");
     }
